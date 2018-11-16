@@ -1,33 +1,26 @@
+#include "Buffer.h"
 #include <iostream>
 #include <fstream>
 
-/**
- * The program reads numbers from a file and prints the sum of them
- * Example: main.exe ./tests/input.in
- * @param  argc [description]
- * @param  argv [description]
- * @return      [description]
- */
-int main(int argc, const char * argv[])
+
+int main()
 {
-    
-    int a = 0;
-    int sum = 0;
-    
-    std::ifstream myReadFile;
-    
-    myReadFile.open(argv[1]);
-    
-    while (myReadFile >> a)
+    Buffer buffer;
+    float readInt;
+
+    std::ifstream readFile;
+    readFile.open("test.txt");
+
+    std::cout << "Input: ";
+    while(readFile >> readInt)
     {
-        sum += a;
+        std::cout << readInt << " ";
+        buffer.newValue(readInt);
     }
-    myReadFile.close();
-    
-    
-    
-    std::cout << sum << "\n";
-    
+    readFile.close();
+
+    buffer.printAboveAvg();
+
+    std::cin.get();
     return 0;
 }
-
